@@ -27,16 +27,9 @@ class Bateau
     private $immatriculation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="bateaus")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\CategorieBateau", inversedBy="bateaus")
      */
     private $Categorie;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Exposant", inversedBy="bateaus")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Exposant;
 
     public function getId(): ?int
     {
@@ -67,26 +60,14 @@ class Bateau
         return $this;
     }
 
-    public function getCategorie(): ?Categorie
+    public function getCategorie(): ?CategorieBateau
     {
         return $this->Categorie;
     }
 
-    public function setCategorie(?Categorie $Categorie): self
+    public function setCategorie(?CategorieBateau $Categorie): self
     {
         $this->Categorie = $Categorie;
-
-        return $this;
-    }
-
-    public function getExposant(): ?Exposant
-    {
-        return $this->Exposant;
-    }
-
-    public function setExposant(?Exposant $Exposant): self
-    {
-        $this->Exposant = $Exposant;
 
         return $this;
     }
