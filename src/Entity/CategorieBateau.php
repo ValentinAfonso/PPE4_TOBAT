@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CategorieRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CategorieBateauRepository")
  */
-class Categorie
+class CategorieBateau
 {
     /**
      * @ORM\Id()
@@ -21,7 +21,7 @@ class Categorie
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nomCateg;
+    private $nomCategBateau;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Bateau", mappedBy="Categorie")
@@ -38,14 +38,14 @@ class Categorie
         return $this->id;
     }
 
-    public function getNomCateg(): ?string
+    public function getNomCategBateau(): ?string
     {
-        return $this->nomCateg;
+        return $this->nomCategBateau;
     }
 
-    public function setNomCateg(string $nomCateg): self
+    public function setNomCategBateau(string $nomCategBateau): self
     {
-        $this->nomCateg = $nomCateg;
+        $this->nomCategBateau = $nomCategBateau;
 
         return $this;
     }

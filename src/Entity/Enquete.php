@@ -22,22 +22,12 @@ class Enquete
     private $dateEnquete;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $categSociale;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $budgetAchat;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
     private $revenirAnneePro;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $raisonVenue;
 
@@ -47,10 +37,9 @@ class Enquete
     private $passVIP;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\visiteur", inversedBy="enquetes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Budget", inversedBy="enquetes")
      */
-    private $visiteur;
+    private $budget;
 
     public function getId(): ?int
     {
@@ -69,36 +58,12 @@ class Enquete
         return $this;
     }
 
-    public function getCategSociale(): ?string
-    {
-        return $this->categSociale;
-    }
-
-    public function setCategSociale(?string $categSociale): self
-    {
-        $this->categSociale = $categSociale;
-
-        return $this;
-    }
-
-    public function getBudgetAchat(): ?int
-    {
-        return $this->budgetAchat;
-    }
-
-    public function setBudgetAchat(?int $budgetAchat): self
-    {
-        $this->budgetAchat = $budgetAchat;
-
-        return $this;
-    }
-
     public function getRevenirAnneePro(): ?bool
     {
         return $this->revenirAnneePro;
     }
 
-    public function setRevenirAnneePro(?bool $revenirAnneePro): self
+    public function setRevenirAnneePro(bool $revenirAnneePro): self
     {
         $this->revenirAnneePro = $revenirAnneePro;
 
@@ -110,7 +75,7 @@ class Enquete
         return $this->raisonVenue;
     }
 
-    public function setRaisonVenue(?string $raisonVenue): self
+    public function setRaisonVenue(string $raisonVenue): self
     {
         $this->raisonVenue = $raisonVenue;
 
@@ -129,14 +94,14 @@ class Enquete
         return $this;
     }
 
-    public function getVisiteur(): ?visiteur
+    public function getBudget(): ?Budget
     {
-        return $this->visiteur;
+        return $this->budget;
     }
 
-    public function setVisiteur(?visiteur $visiteur): self
+    public function setBudget(?Budget $budget): self
     {
-        $this->visiteur = $visiteur;
+        $this->budget = $budget;
 
         return $this;
     }
