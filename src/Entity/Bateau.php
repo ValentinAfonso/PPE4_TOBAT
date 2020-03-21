@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,16 @@ class Bateau
      * @ORM\ManyToOne(targetEntity="App\Entity\CategorieBateau", inversedBy="bateaus")
      */
     private $Categorie;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Enquete", mappedBy="AimeBateau")
+     */
+    private $enquetes;
+
+    public function __construct()
+    {
+        $this->enquetes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,6 +80,34 @@ class Bateau
     public function setCategorie(?CategorieBateau $Categorie): self
     {
         $this->Categorie = $Categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Enquete[]
+     */
+    public function getEnquetes(): Collection
+    {
+        return $this->enquetes;
+    }
+
+    public function addEnquete(Enquete $enquete): self
+    {
+        if (!$this->enquetes->contains($enquete)) {
+            $this->enquetes[] = $enquete;
+            $enquete->addAimeBateau($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnquete(Enquete $enquete): self
+    {
+        if ($this->enquetes->contains($enquete)) {
+            $this->enquetes->removeElement($enquete);
+            $enquete->removeAimeBateau($this);
+        }
 
         return $this;
     }
