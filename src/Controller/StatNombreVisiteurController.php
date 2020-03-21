@@ -9,14 +9,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-class AccesStatController extends AbstractController
+class StatNombreVisiteurController extends AbstractController
 {
     /**
-     * @Route("/", name="accueil")
+     * @Route("/nombreVisiteur", name="nombreVisiteur")
      */
     public function index(): Response
     {
-      return $this->render('base.html.twig');
+      return $this->render('nombreVisiteur.html.twig');
     }
 
 
