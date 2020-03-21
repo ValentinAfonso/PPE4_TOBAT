@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +42,21 @@ class Enquete
      * @ORM\ManyToOne(targetEntity="App\Entity\Budget", inversedBy="enquetes")
      */
     private $budget;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Visiteur", cascade={"persist", "remove"})
+     */
+    private $visiteur;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Bateau", inversedBy="enquetes")
+     */
+    private $AimeBateau;
+
+    public function __construct()
+    {
+        $this->AimeBateau = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -102,6 +119,44 @@ class Enquete
     public function setBudget(?Budget $budget): self
     {
         $this->budget = $budget;
+
+        return $this;
+    }
+
+    public function getVisiteur(): ?Visiteur
+    {
+        return $this->visiteur;
+    }
+
+    public function setVisiteur(?Visiteur $visiteur): self
+    {
+        $this->visiteur = $visiteur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Bateau[]
+     */
+    public function getAimeBateau(): Collection
+    {
+        return $this->AimeBateau;
+    }
+
+    public function addAimeBateau(Bateau $aimeBateau): self
+    {
+        if (!$this->AimeBateau->contains($aimeBateau)) {
+            $this->AimeBateau[] = $aimeBateau;
+        }
+
+        return $this;
+    }
+
+    public function removeAimeBateau(Bateau $aimeBateau): self
+    {
+        if ($this->AimeBateau->contains($aimeBateau)) {
+            $this->AimeBateau->removeElement($aimeBateau);
+        }
 
         return $this;
     }
