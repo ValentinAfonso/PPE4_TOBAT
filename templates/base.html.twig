@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Statistique{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/Stat.ico" />
+
+    {% block stylesheets %} {% endblock %}
+  </head>
+
+  <body>
+    <nav class="navigation">
+      <h2>Menu :</h2>
+      <ul>
+        <li>
+          <a href="#">
+            <input type="button" value="Nombre d'enquête réalisée par jour" />
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <input type="button" value="Nombre visiteur par catégorie" />
+          </a>
+        </li>
+        <li>
+          <a href="{{ path('nombreVisiteur') }}">
+            <input
+              type="button"
+              value="Répartition visiteur (Ville/Département)"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <input type="button" value="Budget max / min achat" />
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <input
+              type="button"
+              value="Répartition par popularité des bateaux"
+            />
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    {% block body %} {% endblock %} {% block javascripts %}{% endblock %}
+  </body>
 </html>
